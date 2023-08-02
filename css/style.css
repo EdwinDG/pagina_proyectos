@@ -1,0 +1,171 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+ 
+}
+
+.nombre {
+  color: #ffffff;
+}
+
+nav a {
+  font-weight: 800;
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+nav a:hover {
+  color: rgb(8, 214, 255);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(-90deg,rgb(255, 255, 255),rgba(6, 185, 146, 0.815),rgb(0, 0, 0),rgb(0, 0, 0),rgb(0, 0, 0));
+  padding: 10px;
+}
+.zp{
+  border: 3px solid rgb(0, 255, 213);
+  border-radius: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 65px;
+  margin-right: 10px;
+}
+
+#nuestros-programas {
+  background-color: rgb(0, 0, 0);
+  text-align: center;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  background-image: url("qwt.jpg");
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#nuestros-programas .programas {
+  display: flex;
+  margin-left: 5%;
+  flex-wrap: wrap;
+}
+
+#nuestros-programas .container {
+  padding: 150px 12px;
+}
+
+#nuestros-programas .carta {
+  background-size: cover;
+  width: 15%;
+  height: 100px;
+  padding: 60px;
+  margin: 30px;
+  display: grid;
+  position: relative;
+  overflow: hidden;
+}
+
+#nuestros-programas .carta img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+/* Estilos para el efecto hover */
+.carta {
+  position: relative;
+  display: inline-block;
+}
+
+.carta:hover img {
+  opacity: 0.2; /* Cambia la opacidad de la imagen al pasar el mouse */
+}
+
+
+/* Estilos adicionales */
+.container1 {
+  text-align: center;
+}
+
+.programas {
+  margin-top: 20px;
+}
+
+.programas .carta {
+  margin: 10px;
+}
+
+.programas .carta img {
+  width: 200px;
+  height: 200px;
+}
+p{
+  color: #ffffffab;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+
+
+
+@media (max-width: 800px) {
+  header {
+    flex-direction: column;
+    background-image: linear-gradient(30deg,rgb(0, 0, 0),rgb(0, 0, 0),rgb(0, 255, 213));
+  }
+
+  nav  {
+    padding: 10px;
+    margin: 10px;
+  }
+   a.zp {
+  background-color: transparent;
+  border: transparent;
+  position: relative;
+  padding: 15px;
+  margin: 10px ;
+  }
+
+  #nuestros-programas {
+    height: 100%;
+  }
+
+  .nombre {
+    text-align: center;
+  }
+
+  #nuestros-programas .programas {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  #nuestros-programas .programas {
+    justify-content: center;
+  }
+}
+@media (max-width: 300px){
+  .logo {
+    flex-wrap: wrap;
+  }
+  .logo img {
+    margin-left: 40px;
+  }
+}
+
+  
