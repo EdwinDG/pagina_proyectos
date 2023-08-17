@@ -5,8 +5,22 @@
 }
 
 body {
-    background-image: url("imagenes/Fondo.jpg");
+    background-size: contain;
+    z-index: 1;
+    height: 100vh;
+    background-image: url("https://img.freepik.com/vector-premium/patas-gato-fondo-pantalla-transparente-gatitos-dibujos-animados-garras-pies-lindas-extremidades-animales-salvajes-o-domesticos-fondo-huellas-mascotas-borde-vector-patron-horizontal-infantil-textil_176516-3428.jpg?w=2000");
+    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
+}
+
+.botn{
+    padding: 5px;
+    display: flex;
+    color: #000;
+    background: rgb(238, 65, 172);
+    border-radius: 10px;
+    width: 6%;
 }
 
 label {
@@ -17,8 +31,7 @@ label {
 
 .contenedor {
     text-align: center;
-    background: white;
-    background-image: url("imagenes/3pt.png");
+    background: linear-gradient(190deg,rgba(84, 85, 87, 0.586),rgba(232, 232, 242, 0));
     height: 90px;
     padding: 20px;
     color: rgb(0, 0, 0);
@@ -28,7 +41,7 @@ label {
     border: 1px solid rgba(0, 42, 255, 0);
     margin-top: 50px;
     border-radius: 10px;
-    background-color: rgb(78, 229, 221);
+    background-color: rgba(70, 123, 121, 0);
 }
 
 .col {
@@ -40,7 +53,12 @@ label {
 .p-3 {
     border: 1px solid rgba(255, 0, 221, 0);
     border-radius: 5px;
-    background-color: #da6fc1;
+    background-color: #ffffff;
+}
+
+#p33{
+    background-image: url("https://img.freepik.com/vector-premium/lindo-patron-transparente-coloridas-patas-mascotas-huella-perro-o-gato-contorno-fondo-brillante-puntos_499817-12.jpg?w=2000");
+    background-size: cover;
 }
 
 
@@ -101,7 +119,6 @@ p {
 }
 
 .animal-button {
-   
     padding: 10px;
     background-color: #dd8811;
     color: #fff;
@@ -117,7 +134,7 @@ p {
 .mensaje-error {
     position: relative;
     bottom: 25px;
-    color: rgb(175, 3, 3);
+    color: rgb(255, 0, 0);
     font-size: 18px;
     font-weight: 800;
     margin-left: 40%;
@@ -132,6 +149,9 @@ p {
     margin-right: 20px;
 }
 
+.row{
+    display: grid;
+}
 
 
 .tarjeta {

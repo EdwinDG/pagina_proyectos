@@ -7,7 +7,6 @@ function validar() {
     const hora = document.getElementById("hora").value;
     const sintomas = document.getElementById("message-text").value.trim();
 
-    // Reiniciamos los mensajes de error
     document.querySelectorAll(".mensaje-error").forEach((elemento) => {
         elemento.textContent = "";
     });
@@ -103,10 +102,6 @@ function mostrarError(campo, mensaje) {
     }, 5000);
 }
 
-
-
-
-
 let bd = ""
 let id = 0
 let id2
@@ -130,7 +125,8 @@ function guardar() {
     if (!validar()) {
         return;
     }
-    if (bd == "agregar") {
+    if (bd === "agregar") {
+        
         let mascota = document.getElementById('mascota').value;
         let propietario = document.getElementById('propietario').value;
         let telefono = document.getElementById('telefono').value;
@@ -139,17 +135,19 @@ function guardar() {
         let fecha = document.getElementById('fecha').value;
         let hora = document.getElementById('hora').value;
         let sintomas = document.getElementById('message-text').value;
-        let estadoCita = document.querySelector('#tipo option:checked').getAttribute('data-imagen');
+        let estadoCita = 'sita por defecto';  
 
-        id += 1
+        id += 1;
         data.push({ id, mascota, propietario, telefono, tipo, imagen, fecha, hora, sintomas, estadoCita });
-        document.getElementById('tarjeta').innerHTML = ""
-        pintar()
-        limpiar()
+        document.getElementById('tarjeta').innerHTML = "";
+        pintar();
+        mostrarTarjetasAbiertas();  
+        limpiar();
+        document.getElementById("inlineRadio2").checked = true;    
     } else {
         data.forEach((e, i) => {
             if (e.id === id2) {
-                e.estadoCita = document.querySelector('#tipo option:checked').getAttribute('data-imagen')
+                e.estadoCita = document.querySelector('#tipo option:checked').getAttribute('data-imagen');
                 e.mascota = document.getElementById('mascota').value;
                 e.propietario = document.getElementById('propietario').value;
                 e.telefono = document.getElementById('telefono').value;
@@ -158,11 +156,23 @@ function guardar() {
                 e.hora = document.getElementById('hora').value;
                 e.sintomas = document.getElementById('message-text').value;
             }
-            document.getElementById('tarjeta').innerHTML = ""
-            pintar()
-            cerrar()
+            document.getElementById('tarjeta').innerHTML = "";
+            pintar();
+            cerrar();
         });
     }
+}
+
+function mostrarTarjetasAbiertas() {
+    // Recorremos el arreglo 'data' y mostramos u ocultamos las tarjetas según el estado
+    data.forEach((e, i) => {
+        let tarjeta = document.getElementById(`tarjeta_${e.id}`);
+        if (e.estadoCita === 'abierta') {  // Mostrar solo las citas abiertas
+            tarjeta.style.display = "block"; // Mostramos la tarjeta
+        } else {
+            tarjeta.style.display = "none"; // Ocultamos la tarjeta
+        }
+    });
 }
 
 function pintar() {
@@ -206,14 +216,13 @@ function pintar() {
         let estadoSelect = document.createElement('select');
         estadoSelect.classList.add('form-select', 'mb-3');
         estadoSelect.innerHTML = `
-          <option value="Estado de sita">Estado de sita</option>
-          <option value="sita terminada">Sita Terminada</option>
-          <option value="sita Cancelada">Sita Cancelada</option>
+        <option value="Estado de sita">Estado de Cita</option>
+        <option value="sita terminada">Cita Terminada</option>
+        <option value="sita Cancelada">Cita Cancelada</option>
         `;
 
         estadoSelect.addEventListener('change', function () {
             e.estadoCita = estadoSelect.value;
-            // Actualiza la clase CSS de la tarjeta según el nuevo estado de la cita
             if (e.estadoCita === 'sita terminada') {
                 cardDiv.classList.add('card-sita-terminada');
                 cardDiv.classList.remove('card-sita-cancelada');
@@ -221,7 +230,6 @@ function pintar() {
                 cardDiv.classList.add('card-sita-cancelada');
                 cardDiv.classList.remove('card-sita-terminada');
             } else {
-                // Si el estado de la cita no es ni "sita terminada" ni "sita Cancelada", elimina ambas clases
                 cardDiv.classList.remove('card-sita-terminada', 'card-sita-cancelada');
             }
         });
@@ -243,7 +251,7 @@ function pintar() {
         cardBodyDiv.appendChild(editButton);
         cardDiv.appendChild(cardBodyDiv);
         document.getElementById('tarjeta').appendChild(cardDiv);
-    })
+    });
 
 }
 
@@ -253,37 +261,34 @@ document.getElementById("inlineRadio2").addEventListener("click", mostrarTarjeta
 document.getElementById("inlineRadio3").addEventListener("click", mostrarTarjetasCanceladas);
 
 function mostrarTarjetasTerminadas() {
-    // Recorremos el arreglo 'data' y mostramos u ocultamos las tarjetas según el estado
-    data.forEach((e, i) => {
+    data.forEach((e) => {
         let tarjeta = document.getElementById(`tarjeta_${e.id}`);
         if (e.estadoCita === 'sita terminada') {
-            tarjeta.style.display = "block"; // Mostramos la tarjeta
+            tarjeta.style.display = "block";
         } else {
-            tarjeta.style.display = "none"; // Ocultamos la tarjeta
+            tarjeta.style.display = "none";
         }
     });
 }
 
 function mostrarTarjetasAbiertas() {
-    // Recorremos el arreglo 'data' y mostramos u ocultamos las tarjetas según el estado
-    data.forEach((e, i) => {
+    data.forEach((e) => {
         let tarjeta = document.getElementById(`tarjeta_${e.id}`);
-        if (e.estadoCita !== 'sita terminada' && e.estadoCita !== 'sita Cancelada') {
-            tarjeta.style.display = "block"; // Mostramos la tarjeta
+        if (e.estadoCita === 'sita por defecto') {
+            tarjeta.style.display = "block";
         } else {
-            tarjeta.style.display = "none"; // Ocultamos la tarjeta
+            tarjeta.style.display = "none";
         }
     });
 }
 
 function mostrarTarjetasCanceladas() {
-    // Recorremos el arreglo 'data' y mostramos u ocultamos las tarjetas según el estado
-    data.forEach((e, i) => {
+    data.forEach((e) => {
         let tarjeta = document.getElementById(`tarjeta_${e.id}`);
         if (e.estadoCita === 'sita Cancelada') {
-            tarjeta.style.display = "block"; // Mostramos la tarjeta
+            tarjeta.style.display = "block";
         } else {
-            tarjeta.style.display = "none"; // Ocultamos la tarjeta
+            tarjeta.style.display = "none";
         }
     });
 }
