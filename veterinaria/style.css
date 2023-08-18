@@ -16,11 +16,10 @@ body {
 
 .botn{
     padding: 5px;
-    display: flex;
     color: #000;
-    background: rgb(238, 65, 172);
+    background: rgba(238, 65, 172, 0.686);
     border-radius: 10px;
-    width: 6%;
+    width: 100%;
 }
 
 label {
